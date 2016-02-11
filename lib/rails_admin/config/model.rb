@@ -64,6 +64,14 @@ module RailsAdmin
         (@label_plural ||= {})[::I18n.locale] ||= abstract_model.model.model_name.human(count: Float::INFINITY, default: label.pluralize(::I18n.locale))
       end
 
+      register_instance_option :label_parent do
+        (@label_parent ||= {})[::I18n.locale] ||= I18n.t("activerecord.models.#{abstract_model.model.model_name.i18n_key}.parent")
+      end
+
+      register_instance_option :label_accusative do
+        (@label_accusative ||= {})[::I18n.locale] ||= I18n.t("activerecord.models.#{abstract_model.model.model_name.i18n_key}.accusative")
+      end
+
       def pluralize(count)
         count == 1 ? label : label_plural
       end
